@@ -88,23 +88,9 @@ def main():
             SamplingConfig(return_per_residue_embeddings=True),
         )
 
-        protein_esm3 = output.per_residue_embedding  # typically torch.Tensor [L, D]
-
-    # Save ONLY the embedding
-    if not isinstance(protein_esm3, torch.Tensor):
-        # Fallback: dump as-is
-        emb_to_save = protein_esm3
-    else:
-        emb_to_save = protein_esm3.detach().to("cpu").float().numpy()
-
+        protein_esm3 = output.per_residue_embedding[1:-1]  # typically torch.Tensor [L, D]
     with open(out_path, "wb") as f:
-        pickle.dump(emb_to_save, f, protocol=pickle.HIGHEST_PROTOCOL)
-
-    print(f"Saved embedding only: {out_path}")
-    try:
-        print(f"Embedding shape: {emb_to_save.shape}")
-    except Exception:
-        print(f"Embedding type: {type(emb_to_save)}")
+        pickle.dump(protein_esm3, f)
 
 
 if __name__ == "__main__":
