@@ -16,28 +16,28 @@ From IMGT-renumbered PDB file (downloaded from SabDab Database), genereate:
 - {pdb}_imgt.txt (0..6 per antibody residue)
 
 **Command**
-'''
+```
 python data_process.py \
   --pdb_name 1abc_imgt.pdb \
   --VH_chain H \
   --VL_chain L \
   --antigen_chain "A;B" \
   --output out/1abc
-'''
+```
 
 **Output**
-'''
+```
 out/1abc/
   1abc_antibody.fasta
   1abc_antigen.fasta
   1abc_imgt.txt
-'''
+```
 
 **Note**
 If multiple antigen chains are used, always wrap them in quotes:
-'''
+```
 "A;B"
-***
+```
 
 ### ESM3 embedding generate
 Generate per-residue ESM3 embeddings and save them as .pkl file. (torch.Tensor)
@@ -50,9 +50,9 @@ You need a Hugging Face access token to download ESM3 weights.
 
 
 **Antibody/Antigen Embedding
-'''
+```
 python esm3_generate.py \
   --hugging_token "hf_xxxxxxxxxxxxxxxxx" \
   --fasta_file out/1abc/1abc_antibody.fasta \
   --output out/1abc/emb
-'''
+```
