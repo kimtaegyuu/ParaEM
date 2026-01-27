@@ -9,6 +9,7 @@ The overall framework of our work is shown below.
 All the data used in the experiments can be found in the data folder. (PECAN / Paragraph_Expanded / MIPE)
 
 ## End-to-end pipeline
+All the code used in the pipeline can be found in the model folder.
 ### Data Process
 From IMGT-renumbered PDB file (downloaded from SabDab Database), genereate:
 - {pdb}_antibody.fasta
