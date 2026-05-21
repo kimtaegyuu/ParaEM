@@ -59,6 +59,13 @@ python esm3_generate.py \
   --output out/1abc/emb
 ```
 
+**Output**
+```
+out/1abc/emb
+  1abc_antibody_esm3.pkl
+```
+
+
 ### Model training
 Train and validate ParaEM to reproduce the paper's results:
 **Command**
@@ -71,8 +78,8 @@ Predict residue-wise paratope probabilities
 **Command**
 ```
 python predict.py \
-  --ab_esm3 out/1abc/emb/1abc_antibody_esm3.npy \
-  --ag_esm3 out/1abc/emb/1abc_antigen_esm3.npy \
+  --ab_esm3 out/1abc/emb/1abc_antibody_esm3.pkl \
+  --ag_esm3 out/1abc/emb/1abc_antigen_esm3.pkl \
   --imgt_txt out/1abc/1abc_imgt.txt \
   --model_pt model_weight/{model_name}.pt \
   --output out/1abc/pred
