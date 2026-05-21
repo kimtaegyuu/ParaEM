@@ -11,7 +11,7 @@ All the data used in the experiments can be found in the data folder. (PECAN / P
 ## End-to-end pipeline
 All the code used in the pipeline can be found in the model folder.
 ### Data Process
-From IMGT-renumbered PDB file (downloaded from SabDab Database), genereate:
+From IMGT-renumbered PDB file (downloaded from SabDab Database), generate:
 - {pdb}_antibody.fasta
 - {pdb}_antigen.fasta
 - {pdb}_imgt.txt (0..6 per antibody residue)
@@ -40,7 +40,7 @@ If multiple antigen chains are used, always wrap them in quotes:
 "A;B"
 ```
 
-### ESM3 embedding generate
+### Generate ESM3 embeddings
 Generate per-residue ESM3 embeddings and save them as .pkl file. (torch.Tensor)
 
 **Hugging Face token**
