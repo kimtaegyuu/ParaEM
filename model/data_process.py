@@ -202,7 +202,7 @@ def write_outputs(
 
     out_ab_fa = os.path.join(out_dir, f"{prefix}_antibody.fasta")
     out_ag_fa = os.path.join(out_dir, f"{prefix}_antigen.fasta")
-    out_imgt_txt = os.path.join(out_dir, f"{prefix}_antibody_imgt.txt")
+    out_imgt_txt = os.path.join(out_dir, f"{prefix}_imgt.txt")
 
     with open(out_ab_fa, "w") as f:
         f.write(f">{pdb_id}\n{ab_seq}\n")
