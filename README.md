@@ -136,5 +136,75 @@ L-1    0.102938
 
 ## Toy example for inference
 
+### Environment
 
+We recommend using conda.
 
+```
+conda env create -f environment.yml
+conda activate paraem
+```
+
+### Data Process
+
+```
+python model/data_process.py \
+  --pdb_name example/1CIC.pdb \
+  --VH_chain A \
+  --VL_chain B \
+  --antigen_chain "D;C" \
+  --output example/output/
+```
+
+**Output**
+
+```
+example/output/
+  1CIC_antibody.fasta
+  1CIC_antigen.fasta
+  1CIC_imgt.txt
+```
+
+### Generate ESM3 embeddings
+
+For antibody sequence:
+
+```
+python model/esm3_generate.py \
+  --hugging_token "hf_xxxxxxxxxxxxxxxxx" \
+  --fasta_file example/output/1CIC_antibody.fasta \
+  --output example/output/
+```
+
+For antigen sequence:
+
+```
+python model/esm3_generate.py \
+  --hugging_token "hf_xxxxxxxxxxxxxxxxx" \
+  --fasta_file example/output/1CIC_antigen.fasta \
+  --output example/output/
+```
+
+**Output**
+```
+example/output/
+  1CIC_antibody_esm3.pkl
+  1CIC_antigen_esm3.pkl
+```
+
+### Inference
+
+```
+python model/predict.py \
+  --ab_esm3 example/output/1CIC_antibody_esm3.pkl \
+  --ag_esm3 example/output/1CIC_antigen_esm3.pkl \
+  --imgt_txt example/output/1CIC_imgt.txt \
+  --model_pt model/model_weight/pecan_model.pt \
+  --output example/output/
+```
+
+**Output**
+```
+example/output/
+  pred.tsv
+```
