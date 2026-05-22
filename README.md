@@ -23,12 +23,12 @@ python data_process.py \
   --VH_chain H \
   --VL_chain L \
   --antigen_chain "A;B" \
-  --output out/1abc
+  --output output/path/
 ```
 
 **Output**
 ```
-out/1abc/
+output/path/
   {pdb}_antibody.fasta
   {pdb}_antigen.fasta
   {pdb}_imgt.txt
@@ -58,13 +58,13 @@ You need a Hugging Face access token to download ESM3 weights.
 ```
 python esm3_generate.py \
   --hugging_token "hf_xxxxxxxxxxxxxxxxx" \
-  --fasta_file out/{pdb}/{pdb}_antibody.fasta \
-  --output out/{pdb}/emb
+  --fasta_file {pdb}_antibody.fasta \
+  --output output/path/
 ```
 
 **Output**
 ```
-out/{pdb}/emb
+output/path/
   {pdb}_antibody_esm3.pkl
 ```
 
@@ -105,16 +105,17 @@ Predict residue-wise paratope probabilities
 **Command**
 ```
 python predict.py \
-  --ab_esm3 out/1abc/emb/1abc_antibody_esm3.pkl \
-  --ag_esm3 out/1abc/emb/1abc_antigen_esm3.pkl \
-  --imgt_txt out/1abc/1abc_imgt.txt \
+  --ab_esm3 {pdb}_antibody_esm3.pkl \
+  --ag_esm3 {pdb}_antigen_esm3.pkl \
+  --imgt_txt {pdb}_imgt.txt \
   --model_pt model_weight/{model_name}.pt \
-  --output out/1abc/pred
+  --output output/path/
 ```
 
 **Output**
 ```
-out/1abc/pred/pred.tsv
+output/path/
+  pred.tsv
 ```
 
 **pred.tsv format**
@@ -134,4 +135,6 @@ L-1    0.102938
 ---
 
 ## Toy example for inference
+
+
 
