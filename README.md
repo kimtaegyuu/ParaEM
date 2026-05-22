@@ -35,6 +35,7 @@ out/1abc/
 ```
 
 **Note**
+
 If multiple antigen chains are used, always wrap them in quotes:
 ```
 "A;B"
@@ -44,6 +45,7 @@ If multiple antigen chains are used, always wrap them in quotes:
 Generate per-residue ESM3 embeddings and save them as .pkl file. (torch.Tensor)
 
 **Hugging Face token**
+
 You need a Hugging Face access token to download ESM3 weights.
 1. Log in to Hugging Face (web)
 2. Go to Settings → Access Tokens
