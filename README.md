@@ -19,7 +19,7 @@ From IMGT-renumbered PDB file (downloaded from SabDab Database), generate:
 **Command**
 ```
 python data_process.py \
-  --pdb_name 1abc_imgt.pdb \
+  --pdb_name {pdb}.pdb \
   --VH_chain H \
   --VL_chain L \
   --antigen_chain "A;B" \
@@ -29,9 +29,9 @@ python data_process.py \
 **Output**
 ```
 out/1abc/
-  1abc_antibody.fasta
-  1abc_antigen.fasta
-  1abc_imgt.txt
+  {pdb}_antibody.fasta
+  {pdb}_antigen.fasta
+  {pdb}_imgt.txt
 ```
 
 **Note**
@@ -40,6 +40,7 @@ If multiple antigen chains are used, always wrap them in quotes:
 ```
 "A;B"
 ```
+
 
 ### Generate ESM3 embeddings
 Generate per-residue ESM3 embeddings and save them as .pkl file. (torch.Tensor)
@@ -57,26 +58,50 @@ You need a Hugging Face access token to download ESM3 weights.
 ```
 python esm3_generate.py \
   --hugging_token "hf_xxxxxxxxxxxxxxxxx" \
-  --fasta_file out/1abc/1abc_antibody.fasta \
-  --output out/1abc/emb
+  --fasta_file out/{pdb}/{pdb}_antibody.fasta \
+  --output out/{pdb}/emb
 ```
 
 **Output**
 ```
-out/1abc/emb
-  1abc_antibody_esm3.pkl
+out/{pdb}/emb
+  {pdb}_antibody_esm3.pkl
 ```
+
 
 
 ### Model training
 Train and validate ParaEM to reproduce the paper's results:
+
 **Command**
 ```
-python train.py
+python train.py \
+  --train_antibody path/to/train_ab_embs_esm3.pkl \
+  --train_antigen path/to/train_ag_embs_esm3.pkl \
+  --train_labels path/to/train_label \
+  --train_imgt path/to/train_imgt \
+  --valid_antibody path/to/valid_ab_embs_esm3.pkl \
+  --valid_antigen path/to/valid_ag_embs_esm3.pkl \
+  --valid_labels path/to/valid_label \
+  --valid_imgt path/to/valid_imgt \
+  --test_antibody path/to/test_ab_embs_esm3.pkl \
+  --test_antigen path/to/test_ag_embs_esm3.pkl \
+  --test_labels path/to/test_label \
+  --test_imgt path/to/test_imgt \
+  --em_iters 50 \
+  --m_epochs 2 \
+  --lr 1e-5 \
+  --patience 10 \
+  --save_path path/to/output/best_paraem.pt
 ```
+
+Replace `path/to/...` with the corresponding processed files for PECAN, Paragraph Expanded, or MIPE.
+The best checkpoint is selected using validation macro AUC-PR and saved to `--save_path`.
+
 
 ### Model inference
 Predict residue-wise paratope probabilities
+
 **Command**
 ```
 python predict.py \
@@ -86,10 +111,12 @@ python predict.py \
   --model_pt model_weight/{model_name}.pt \
   --output out/1abc/pred
 ```
+
 **Output**
 ```
 out/1abc/pred/pred.tsv
 ```
+
 **pred.tsv format**
 ```
 idx    prob
@@ -101,3 +128,10 @@ L-1    0.102938
 ```
 - idx: residue index (0-based)
 - prob: predicted paratope probability
+
+
+
+---
+
+## Toy example for inference
+
