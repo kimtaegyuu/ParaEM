@@ -199,7 +199,7 @@ python model/predict.py \
   --ab_esm3 example/output/1CIC_antibody_esm3.pkl \
   --ag_esm3 example/output/1CIC_antigen_esm3.pkl \
   --imgt_txt example/output/1CIC_imgt.txt \
-  --model_pt model/model_weight/pecan_model.pt \
+  --model_pt model/model_weight/pecan_model.pth \
   --output example/output/
 ```
 
