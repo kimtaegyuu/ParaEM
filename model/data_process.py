@@ -151,7 +151,7 @@ def process_single_pdb(
     if not os.path.exists(pdb_path):
         raise FileNotFoundError(f"Missing PDB: {pdb_path}")
 
-    pdb_id = os.path.splitext(os.path.basename(pdb_path))[0].strip().lower()
+    pdb_id = os.path.splitext(os.path.basename(pdb_path))[0].strip()
 
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure(pdb_id, pdb_path)
