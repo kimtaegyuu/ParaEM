@@ -6,7 +6,7 @@ The overall framework of our work is shown below.
 ![Overall Framework](img/main_figure.png)
 
 ## Dataset
-All the data used in the experiments can be found in the data folder. (PECAN / Paragraph_Expanded / MIPE)
+Dataset split information used in the experiments is provided in the data folder. (PECAN / Paragraph_Expanded / MIPE)
 
 ## End-to-end pipeline
 All the code used in the pipeline can be found in the model folder.
@@ -92,7 +92,7 @@ python train.py \
   --m_epochs 2 \
   --lr 1e-5 \
   --patience 10 \
-  --save_path path/to/output/best_paraem.pt
+  --save_path path/to/output/best_paraem.pth
 ```
 
 Replace `path/to/...` with the corresponding processed files for PECAN, Paragraph Expanded, or MIPE.
@@ -108,7 +108,7 @@ python predict.py \
   --ab_esm3 {pdb}_antibody_esm3.pkl \
   --ag_esm3 {pdb}_antigen_esm3.pkl \
   --imgt_txt {pdb}_imgt.txt \
-  --model_pt model_weight/{model_name}.pt \
+  --model_pt model_weight/{model_name}.pth \
   --output output/path/
 ```
 
@@ -130,7 +130,7 @@ L-1    0.102938
 - idx: residue index (0-based)
 - prob: predicted paratope probability
 
-
+The default inference configuration corresponds to the PECAN checkpoint. For Paragraph Expanded and MIPE checkpoints, use the dataset-specific hyperparameters listed in model/model_weight/README.md.
 
 ---
 
