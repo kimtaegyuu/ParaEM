@@ -3,7 +3,7 @@ The official code implementation for the paper [ParaEM: Antigen-aware sequence-b
 
 ## Model Architecture
 The overall framework of our work is shown below.
-![Overall Framework](img/model.png)
+![Overall Framework](img/main_figure.png)
 
 ## Dataset
 All the data used in the experiments can be found in the data folder. (PECAN / Paragraph_Expanded / MIPE)
