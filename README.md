@@ -1,5 +1,5 @@
-# ParaEM: Sequence-based paratope predictor using Expectation-Maximization with CDR prior
-The official code implementation for the paper [ParaEM: Sequence-based paratope predictor using Expectation-Maximization with CDR prior]
+# ParaEM: Antigen-aware sequence-based paratope prediction with Expectation-Maximization
+The official code implementation for the paper [ParaEM: Antigen-aware sequence-based paratope prediction with Expectation-Maximization]
 
 ## Model Architecture
 The overall framework of our work is shown below.
