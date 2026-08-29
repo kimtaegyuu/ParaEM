@@ -49,7 +49,7 @@ class CrossAttentionEM_MultiHeadCDR(nn.Module):
         device = ab_emb.device
         imgt_cat = imgt_cat.to(device)
 
-        # NOTE: original code had ag_ln = ab_ln bug; fixed here.
+    
         ab_n = self.ln(ab_emb)  # (L_ab, d)
         ag_n = self.ln(ag_emb)  # (L_ag, d)
 
